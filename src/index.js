@@ -1,8 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.min";
+import "../node_modules/jquery/dist/jquery.min";
+import "../node_modules/popper.js/dist/umd/popper.min";
 
 ReactDOM.render(
   //nội dung in ra HTML
@@ -10,7 +14,7 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   // vị trí in ra HTML
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
