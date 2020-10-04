@@ -8,6 +8,13 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../node_modules/jquery/dist/jquery.min";
 import "../node_modules/popper.js/dist/umd/popper.min";
 
+//css
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+//js
+import "../node_modules/bootstrap/dist/js/bootstrap.min";
+import"../node_modules/jquery/dist/jquery.slim.min";
+import "../node_modules/popper.js/dist/umd/popper.min";
+
 ReactDOM.render(
   //nội dung in ra HTML
   <React.StrictMode>

@@ -5,6 +5,10 @@ import DemoDataBingding from "./DataBinding/DemoDataBingding";
 import FunctionEvent from "./HandleEvent/FunctionEvent";
 import ClassEvent from "./HandleEvent/ClassEvent";
 import DemoConditionalAndState from "./DemoLogin/DemoConditionalAndState";
+import "./App.css";
+import StateLessComponent from "./component/StateLessComponent";
+import StateFull, { StateFullComponent } from "./component/StateFullComponent";
+import Home from "./baiTapChiaComponent/Home";
 
 function App() {
   return (
@@ -14,6 +18,9 @@ function App() {
       {/* <ClassEvent /> */}
       {/* <DemoConditionalAndState /> */}
       <ChangColorCar />
+      {/* <StateLessComponent />
+      <StateFull /> */}
+      <Home />
     </div>
   );
 }
