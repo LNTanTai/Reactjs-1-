@@ -5,11 +5,27 @@ export default class SanPham extends Component {
     return (
       <div>
         <div className="card">
-          <img className="card-img-top" src="./img/vsphone.jpg" alt />
+          <img className="card-img-top" src={this.props.sanPham.hinhAnh} alt />
           <div className="card-body">
-            <h4 className="card-title">VinSmart Live</h4>
-            <button className="btn btn-success">Chi tiết</button>
-            <button className="btn btn-danger">Thêm giỏ hàng</button>
+            <h4 className="card-title">{this.props.sanPham.tenSanPham}</h4>
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                // const sanPhamDuocNhan = this.props.sanPham;
+                this.props.handleDetail(this.props.sanPham);
+              }}
+            >
+              Chi tiết
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                const sanPhamDuocNhan = this.props.sanPham;
+                this.props.handleAddSP(sanPhamDuocNhan);
+              }}
+            >
+              Thêm giỏ hàng
+            </button>
           </div>
         </div>
       </div>
