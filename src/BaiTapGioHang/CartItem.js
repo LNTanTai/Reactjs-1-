@@ -10,12 +10,22 @@ export default class CartItem extends Component {
           <img src={this.props.cart.hinhAnh} width={50} alt />
         </td>
         <td>
-          <button>-</button>1<button>+</button>
+          <button>-</button>
+          {this.props.cart.soLuong}
+          <button>+</button>
         </td>
         <td>{this.props.cart.giaBan}</td>
-        <td>2343546</td>
+        <td>{this.props.cart.giaBan * this.props.cart.soLuong}</td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              const cartDuocNhan = this.props.cart;
+              this.props.handleDelete(cartDuocNhan);
+            }}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     );
