@@ -72,11 +72,37 @@ export default class BaiTapGioHang extends Component {
     danhSachGioHang: [],
   };
 
+  handleDelete = (cart) => {
+    let danhSachGioHang = this.state.danhSachGioHang;
+
+    danhSachGioHang = danhSachGioHang.filter((item) => {
+      return cart.maSanPham !== item.maSanPham;
+    });
+    this.setState({ danhSachGioHang });
+  };
+
   handleAddSP = (sanPham) => {
     // console.log("sanPham : ", sanPham);
     let danhSachGioHang = [...this.state.danhSachGioHang];
-    // danhSachGioHang.push(sanPham);
-    danhSachGioHang = [...danhSachGioHang, sanPham];
+    // findIndex tim xem co ton tai trong mang hay ko :
+    // neu co ton tai tra ve Index
+    // neu ko ton tai tra ve -1
+
+    const index = danhSachGioHang.findIndex((cart) => {
+      return cart.maSanPham === sanPham.maSanPham;
+    });
+    if (index !== -1) {
+      //tim thay
+      //cap nhat so luong
+      danhSachGioHang[index].soLuong += 1;
+    } else {
+      // khong tim thay
+      //set so luong = 1, push vao mang
+      sanPham.soLuong = 1;
+      // danhSachGioHang.push(sanPham);
+      danhSachGioHang = [...danhSachGioHang, sanPham];
+    }
+
     //setState
     this.setState(
       {
@@ -119,7 +145,10 @@ export default class BaiTapGioHang extends Component {
             <div className="container">
               <div className="row">{this.renderDanhSachSanPham()}</div>
             </div>
-            <Modal danhSachGioHang={this.state.danhSachGioHang} />
+            <Modal
+              handleDelete={this.handleDelete}
+              danhSachGioHang={this.state.danhSachGioHang}
+            />
             <div className="row">
               <div className="col-sm-5">
                 <img
