@@ -14,61 +14,63 @@
 import React, { Component } from "react";
 import SanPham from "./SanPham";
 import Modal from "./Modal";
-export default class BaiTapGioHang extends Component {
+import { connect } from "react-redux";
+
+class BaiTapGioHang extends Component {
   handleDetail = (sanpham) => {
     this.setState({
       sanPhamChiTiet: sanpham,
     });
   };
-  danhSachSanPham = [
-    {
-      maSanPham: "1",
-      tenSanPham: "VS Phone",
-      hinhAnh: "./img/vsphone.jpg",
-      manHinh: `AMOLED, 6.2", Full HD+`,
-      heDieuHanh: "Android 9.0 (Pie)",
-      cameraTruoc: "20 MP",
-      cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
-      ram: "4 GB",
-      rom: "6 GB",
-      giaBan: "100000000",
-    },
-    {
-      maSanPham: "2",
-      tenSanPham: "Meizu Phone",
-      hinhAnh: "./img/meizuphone.jpg",
-      manHinh: `AMOLED, FHD+ 2232 x 1080 pixels`,
-      heDieuHanh: "Android 5.0 (Pie)",
-      cameraTruoc: "40 MP",
-      cameraSau: "Chính 40 MP & Phụ 8 MP, 5 MP",
-      ram: "10 GB",
-      rom: "12 GB",
-      giaBan: "2300000000",
-    },
-    {
-      maSanPham: "3",
-      tenSanPham: "Apple Phone",
-      hinhAnh: "./img/applephone.jpg",
-      manHinh: `OLED, 6.5", 1242 x 2688 Pixels`,
-      heDieuHanh: "Android 10.0 (Pie)",
-      cameraTruoc: "50 MP",
-      cameraSau: "Chính 43 MP & Phụ 4 MP, 5 MP",
-      ram: "5 GB",
-      rom: "20 GB",
-      giaBan: "765000000",
-    },
-  ];
+  // danhSachSanPham = [
+  //   {
+  //     maSanPham: "1",
+  //     tenSanPham: "VS Phone",
+  //     hinhAnh: "./img/vsphone.jpg",
+  //     manHinh: `AMOLED, 6.2", Full HD+`,
+  //     heDieuHanh: "Android 9.0 (Pie)",
+  //     cameraTruoc: "20 MP",
+  //     cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
+  //     ram: "4 GB",
+  //     rom: "6 GB",
+  //     giaBan: "100000000",
+  //   },
+  //   {
+  //     maSanPham: "2",
+  //     tenSanPham: "Meizu Phone",
+  //     hinhAnh: "./img/meizuphone.jpg",
+  //     manHinh: `AMOLED, FHD+ 2232 x 1080 pixels`,
+  //     heDieuHanh: "Android 5.0 (Pie)",
+  //     cameraTruoc: "40 MP",
+  //     cameraSau: "Chính 40 MP & Phụ 8 MP, 5 MP",
+  //     ram: "10 GB",
+  //     rom: "12 GB",
+  //     giaBan: "2300000000",
+  //   },
+  //   {
+  //     maSanPham: "3",
+  //     tenSanPham: "Apple Phone",
+  //     hinhAnh: "./img/applephone.jpg",
+  //     manHinh: `OLED, 6.5", 1242 x 2688 Pixels`,
+  //     heDieuHanh: "Android 10.0 (Pie)",
+  //     cameraTruoc: "50 MP",
+  //     cameraSau: "Chính 43 MP & Phụ 4 MP, 5 MP",
+  //     ram: "5 GB",
+  //     rom: "20 GB",
+  //     giaBan: "765000000",
+  //   },
+  // ];
   state = {
-    sanPhamChiTiet: {
-      maSanPham: "1",
-      hinhAnh: "./img/vsphone.jpg",
-      manHinh: `AMOLED, 6.2", Full HD+`,
-      heDieuHanh: "Android 9.0 (Pie)",
-      cameraTruoc: "20 MP",
-      cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
-      ram: "4 GB",
-      rom: "6 GB",
-    },
+    // sanPhamChiTiet: {
+    //   maSanPham: "1",
+    //   hinhAnh: "./img/vsphone.jpg",
+    //   manHinh: `AMOLED, 6.2", Full HD+`,
+    //   heDieuHanh: "Android 9.0 (Pie)",
+    //   cameraTruoc: "20 MP",
+    //   cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
+    //   ram: "4 GB",
+    //   rom: "6 GB",
+    // },
     danhSachGioHang: [],
   };
 
@@ -142,7 +144,7 @@ export default class BaiTapGioHang extends Component {
   };
 
   renderDanhSachSanPham = () => {
-    return this.danhSachSanPham.map((sanpham, index) => {
+    return this.props.danhSachSanPham.map((sanpham, index) => {
       return (
         <div className="col-sm-4" key={index}>
           <SanPham
@@ -181,7 +183,7 @@ export default class BaiTapGioHang extends Component {
               <div className="col-sm-5">
                 <img
                   className="img-fluid"
-                  src={this.state.sanPhamChiTiet.hinhAnh}
+                  src={this.props.sanPhamChiTiet.hinhAnh}
                   alt
                 />
               </div>
@@ -191,27 +193,27 @@ export default class BaiTapGioHang extends Component {
                   <tbody>
                     <tr>
                       <td>Màn hình</td>
-                      <td>{this.state.sanPhamChiTiet.manHinh}</td>
+                      <td>{this.props.sanPhamChiTiet.manHinh}</td>
                     </tr>
                     <tr>
                       <td>Hệ điều hành</td>
-                      <td>{this.state.sanPhamChiTiet.heDieuHanh}</td>
+                      <td>{this.props.sanPhamChiTiet.heDieuHanh}</td>
                     </tr>
                     <tr>
                       <td>Camera trước</td>
-                      <td>{this.state.sanPhamChiTiet.cameraTruoc}</td>
+                      <td>{this.props.sanPhamChiTiet.cameraTruoc}</td>
                     </tr>
                     <tr>
                       <td>Camera sau</td>
-                      <td>{this.state.sanPhamChiTiet.cameraSau}</td>
+                      <td>{this.props.sanPhamChiTiet.cameraSau}</td>
                     </tr>
                     <tr>
                       <td>RAM</td>
-                      <td>{this.state.sanPhamChiTiet.ram}</td>
+                      <td>{this.props.sanPhamChiTiet.ram}</td>
                     </tr>
                     <tr>
                       <td>ROM</td>
-                      <td>{this.state.sanPhamChiTiet.rom}</td>
+                      <td>{this.props.sanPhamChiTiet.rom}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -223,3 +225,14 @@ export default class BaiTapGioHang extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    // key : value
+    // key la props cuar component : value la state duoc luu tren store
+    danhSachSanPham: state.giohangReducer.danhSachSanPham,
+    sanPhamChiTiet: state.giohangReducer.sanPhamChiTiet,
+  };
+};
+
+export default connect(mapStateToProps)(BaiTapGioHang);
