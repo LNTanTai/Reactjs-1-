@@ -9,7 +9,7 @@ import "./App.css";
 // import StateLessComponent from "./component/StateLessComponent";
 // import StateFull, { StateFullComponent } from "./component/StateFullComponent";
 // import Home from "./baiTapChiaComponent/Home";
-import BaiTapGioHang from "./BaiTapGioHang/BaiTapGioHang";
+import BaiTapGioHangRedux from "./BaiTapGioHangRedux/BaiTapGioHang";
 // import DemoCourse from "./ListAndKeys/DemoCourse";
 // import DemoProps from "./Props/DemoProps";
 
@@ -26,7 +26,8 @@ function App() {
       {/* <Home /> */}
       {/* <DemoCourse />
       <DemoProps /> */}
-      <BaiTapGioHang />
+      {/* <BaiTapGioHang /> */}
+      <BaiTapGioHangRedux />
     </div>
   );
 }
