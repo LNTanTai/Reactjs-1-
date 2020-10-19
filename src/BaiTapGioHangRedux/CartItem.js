@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actDelete, actTangGiamSL } from "./../redux/actions";
 
-export default class CartItem extends Component {
+class CartItem extends Component {
   render() {
     return (
       <tr>
@@ -35,7 +37,8 @@ export default class CartItem extends Component {
             className="btn btn-danger"
             onClick={() => {
               const cartDuocNhan = this.props.cart;
-              this.props.handleDelete(cartDuocNhan);
+              // this.props.handleDelete(cartDuocNhan);
+              this.props.deleteProduct(cartDuocNhan);
             }}
           >
             Delete
@@ -45,3 +48,20 @@ export default class CartItem extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteProduct: (product) => {
+      dispatch(actDelete(product));
+    },
+    handleSPTangGiam: (product, status) => {
+      const data = {
+        product,
+        status,
+      };
+      dispatch(actTangGiamSL(data));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CartItem);

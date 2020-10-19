@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actThemSL, actDetail } from "./../redux/actions";
 
 class SanPham extends Component {
   render() {
@@ -12,7 +13,7 @@ class SanPham extends Component {
             <button
               className="btn btn-success"
               onClick={() => {
-                // const sanPhamDuocNhan = this.props.sanPham;
+                const sanPhamDuocNhan = this.props.sanPham;
                 this.props.handleDetail(this.props.sanPham);
               }}
             >
@@ -22,7 +23,7 @@ class SanPham extends Component {
               className="btn btn-danger"
               onClick={() => {
                 const sanPhamDuocNhan = this.props.sanPham;
-                this.props.handleAddSP(sanPhamDuocNhan);
+                this.props.handleAddCart(sanPhamDuocNhan);
               }}
             >
               Thêm giỏ hàng
@@ -39,11 +40,10 @@ const mapDispatchToprops = (dispatch) => {
     //key : value
     //key la props cua component : value la phuong thuc gui action len store
     handleDetail: (sp) => {
-      const action = {
-        type: "DETAIL_PRODUCT",
-        payload: sp,
-      };
-      dispatch(action);
+      dispatch(actDetail(sp));
+    },
+    handleAddCart: (product) => {
+      dispatch(actThemSL(product));
     },
   };
 };
