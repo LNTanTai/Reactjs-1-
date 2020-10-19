@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
 
-export default class Modal extends Component {
+class Modal extends Component {
   renderCartList = () => {
     return this.props.danhSachGioHang.map((cart, index) => {
-      return (
-        <CartItem
-          handleSPTangGiam={this.props.handleSPTangGiam}
-          handleDelete={this.props.handleDelete}
-          key={index}
-          cart={cart}
-        />
-      );
+      return <CartItem key={index} cart={cart} />;
     });
   };
 
@@ -75,3 +69,11 @@ export default class Modal extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    danhSachGioHang: state.giohangReducer.danhSachGioHang,
+  };
+};
+
+export default connect(mapStateToProps, null)(Modal);

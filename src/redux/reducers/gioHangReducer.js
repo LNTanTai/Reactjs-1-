@@ -1,3 +1,10 @@
+import {
+  DELETE_PRODUCT,
+  TANG_GIAM_SL,
+  DETAIL_PRODUCT,
+  ADD_PRODUCT,
+} from "./../constains";
+
 const initialSate = {
   sanPhamChiTiet: {
     maSanPham: "1",
@@ -52,8 +59,68 @@ const initialSate = {
 
 const giohangReducer = (state = initialSate, actions) => {
   switch (actions.type) {
-    case "DETAIL_PRODUCT": {
+    case DETAIL_PRODUCT: {
       state.sanPhamChiTiet = actions.payload;
+      return { ...state };
+    }
+
+    case ADD_PRODUCT: {
+      console.log(actions);
+      let danhSachGioHang = [...state.danhSachGioHang];
+      const index = state.danhSachGioHang.findIndex((items) => {
+        return items.maSanPham === actions.payload.maSanPham;
+      });
+      if (index != -1) {
+        //Tim thay => update SL
+        const product = { ...danhSachGioHang[index] };
+        product.soLuong++;
+        danhSachGioHang[index] = product;
+        // danhSachGioHang[index].soLuong += 1;
+      } else {
+        //Add vao gio hang
+        actions.payload.soLuong = 1;
+        danhSachGioHang = [...danhSachGioHang, actions.payload];
+      }
+
+      state.danhSachGioHang = danhSachGioHang;
+      return { ...state };
+    }
+
+    case DELETE_PRODUCT: {
+      let danhSachGioHang = [...state.danhSachGioHang]; //spread operator
+      //boc tach du lieu
+      // let {danhSachGioHang} = state
+
+      danhSachGioHang = danhSachGioHang.filter((item) => {
+        return item.maSanPham !== actions.payload.maSanPham;
+      });
+
+      state.danhSachGioHang = danhSachGioHang;
+
+      return { ...state };
+    }
+
+    case TANG_GIAM_SL: {
+      const index = state.danhSachGioHang.findIndex((item) => {
+        return item.maSanPham === actions.payload.product.maSanPham;
+      });
+      if (index !== -1) {
+        let danhSachGioHang = [...state.danhSachGioHang];
+        const product = { ...state.danhSachGioHang[index] };
+        if (actions.payload.status) {
+          //Tang
+          product.soLuong++;
+          danhSachGioHang[index] = product;
+        } else {
+          //giam
+          if (product.soLuong > 1) {
+            product.soLuong--;
+            danhSachGioHang[index] = product;
+          }
+        }
+
+        state.danhSachGioHang = danhSachGioHang;
+      }
       return { ...state };
     }
 
